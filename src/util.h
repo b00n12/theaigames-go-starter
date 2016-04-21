@@ -16,11 +16,13 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#ifndef UTIL_H
+#define UTIL_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+long random_at_most(long max);
+
+char *str_replace(char *str, char *to_replace, char *replacement);
+
+char **str_split(char *str, char *delimiter);
+
+#endif

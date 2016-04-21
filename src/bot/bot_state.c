@@ -16,11 +16,16 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#include "bot_state.h"
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+Settings g_game_settings = {
+    .my_bot_id = INITIALVALUE16,
+    .opponent_bot_id = INITIALVALUE16,
+    .timebank = INITIALVALUE64,
+    .time_per_move = INITIALVALUE64,
+    .field_width = INITIALVALUE32,
+    .field_height = INITIALVALUE32,
+    .max_rounds = INITIALVALUE32
+};
+
+BotState g_bot_state;

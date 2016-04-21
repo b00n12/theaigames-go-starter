@@ -16,11 +16,17 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#ifndef FIELD_H
+#define FIELD_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+#include "../bot/bot_state.h"
+#include "../move/move.h"
+
+short **create_new_field();
+void destroy_field(short **field);
+short **parse_field(char *str);
+void clear_field(short **field);
+Move *get_available_moves(short **field);
+const char *field_to_str(short **field);
+
+#endif

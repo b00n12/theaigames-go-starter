@@ -16,11 +16,9 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#ifndef PARSER_H
+#define PARSER_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+void run(void);
+
+#endif

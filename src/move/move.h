@@ -16,11 +16,21 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#ifndef MOVE_H
+#define MOVE_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+#include <stdbool.h>
+
+typedef struct Move {
+    bool is_pass;
+    unsigned int x_pos;
+    unsigned int y_pos;
+
+    /*
+     * Needed for usage of utlist
+     */
+    struct Move *prev;
+    struct Move *next;
+} Move;
+
+#endif

@@ -16,11 +16,11 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
+#ifndef BOT_H
+#define BOT_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+#include "../move/move.h"
+
+Move make_move(long time);
+
+#endif
