@@ -104,3 +104,11 @@ char **str_split(char *str, char *delimiter)
 
     return splitted;
 }
+
+void free_ptr_array(void **ptr_array, int size)
+{
+    for (int i = 0; i < size; i++) {
+        free(ptr_array[i]);
+    }
+    free(ptr_array);
+}

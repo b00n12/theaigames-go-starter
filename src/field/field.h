@@ -24,9 +24,11 @@
 
 short **create_new_field();
 void destroy_field(short **field);
+short **copy_field(short **field);
 short **parse_field(char *str);
 void clear_field(short **field);
 Move *get_available_moves(short **field);
 const char *field_to_str(short **field);
+int **get_adjacent_coordinates(int x, int y);
 
 #endif

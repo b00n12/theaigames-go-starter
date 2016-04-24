@@ -25,4 +25,6 @@ char *str_replace(char *str, char *to_replace, char *replacement);
 
 char **str_split(char *str, char *delimiter);
 
+void free_ptr_array(void **ptr_array, int size);
+
 #endif

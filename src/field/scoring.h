@@ -16,13 +16,9 @@
  * along with gostarter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "bot/parser.h"
-#include <stdio.h>
-#include "field/field.h"
-#include "field/scoring.h"
+#ifndef SCORING_H
+#define SCORING_H
 
-int main(int argc, char **argv)
-{
-    run();
-    return 0;
-}
+void count_score(float *score_player1, float *score_player2, short **field);
+
+#endif

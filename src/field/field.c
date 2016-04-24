@@ -33,9 +33,7 @@ short **create_new_field()
     short **field = malloc(sizeof(short*) * g_game_settings.field_width);
 
     for (int i = 0; i < g_game_settings.field_width; i++) {
-        for (int j = 0; j < g_game_settings.field_height; j++) {
-            field[i] = malloc(sizeof(short) * g_game_settings.field_height);
-        }
+        field[i] = malloc(sizeof(short) * g_game_settings.field_height);
     }
 
     clear_field(field);
@@ -47,10 +45,22 @@ void destroy_field(short **field)
     assert(g_game_settings.field_width != INITIALVALUE64
             && g_game_settings.field_height != INITIALVALUE64);
 
-    for (int i = 0; i < g_game_settings.field_width; i++) {
-        free(field[i]);
+    free_ptr_array((void**) field, g_game_settings.field_width);
+}
+
+short **copy_field(short **field)
+{
+    assert(g_game_settings.field_width != INITIALVALUE64
+            && g_game_settings.field_height != INITIALVALUE64);
+
+    short **field_copy = create_new_field();
+    for (int j = 0; j < g_game_settings.field_height; j++) {
+        for (int i = 0; i < g_game_settings.field_width; i++) {
+            field_copy[i][j] = field[i][j];
+        }
     }
-    free(field);
+
+    return field_copy;
 }
 
 short **parse_field(char *str)
@@ -198,4 +208,45 @@ const char *field_to_str(short **field)
     str[count] = '\0';
 
     return str;
+}
+
+int **get_adjacent_coordinates(int x, int y)
+{
+    int **adjacent_coordinates = malloc(sizeof(int*) * 4);
+
+    int index = 0;
+    int new_y = y + 1;
+    if (new_y < g_game_settings.field_height) {
+        adjacent_coordinates[index] = malloc(sizeof(int) * 2);
+        adjacent_coordinates[index][0] = x;
+        adjacent_coordinates[index][1] = new_y;
+        index++;
+    }
+    new_y = y - 1;
+    if (new_y >= 0) {
+        adjacent_coordinates[index] = malloc(sizeof(int) * 2);
+        adjacent_coordinates[index][0] = x;
+        adjacent_coordinates[index][1] = new_y;
+        index++;
+    }
+
+    int new_x = x + 1;
+    if (new_x < g_game_settings.field_width) {
+        adjacent_coordinates[index] = malloc(sizeof(int) * 2);
+        adjacent_coordinates[index][0] = new_x;
+        adjacent_coordinates[index][1] = y;
+        index++;
+    }
+    new_x = x - 1;
+    if (new_x >= 0) {
+        adjacent_coordinates[index] = malloc(sizeof(int) * 2);
+        adjacent_coordinates[index][0] = new_x;
+        adjacent_coordinates[index][1] = y;
+        index++;
+    }
+
+    for (; index < 4; index++) {
+        adjacent_coordinates[index] = NULL;
+    }
+    return adjacent_coordinates;
 }
